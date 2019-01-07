@@ -10,8 +10,8 @@ pipeline {
             }
             post {
                 always {
-                     junit 'target/surefire-reports/*.xml'
-                 }
+                    emailext body: '${FILE,path="target/surefire-reports/tests.AssignmentTest.txt"}', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Your assignment submission results'
+                }
             }
         }
     }
